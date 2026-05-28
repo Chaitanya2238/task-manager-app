@@ -13,7 +13,8 @@ const Login = () => {
       const { data } = await API.post('/users/login', { email, password });
       localStorage.setItem('token', data.token);
       localStorage.setItem('userInfo', JSON.stringify(data));
-      window.location.href = '/dashboard';
+      navigate('/dashboard');
+      window.location.reload(); // Ensure the App component re-checks the token
     } catch (err) {
       alert(err.response?.data?.message || 'Login failed');
     }
